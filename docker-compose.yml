@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+
+  web:
+    build:
+      context: ./services/php
+      args:
+        USER_ID: "${USER_ID}"
+        GROUP_ID: "${GROUP_ID}"
+    volumes:
+      - ./src:/var/www/app
+    depends_on:
+      - database
+    ports:
+      - "${HTTP_PORT}:80"
+    env_file:
+      - ./.env
+    environment:
+      APP_NAME: "${COMPOSE_PROJECT_NAME}"
+      DB_DATABASE: "${DATABASE_NAME}"
+      DB_USERNAME: "${DATABASE_USER}"
+      DB_PASSWORD: "${DATABASE_PASSWORD}"
+
+  php-cli:
+    build:
+      context: ./services/php
+      args:
+        USER_ID: "${USER_ID}"
+        GROUP_ID: "${GROUP_ID}"
+    user: "${USER_ID}:${GROUP_ID}"
+    volumes:
+      - ./src:/var/www/app
+    depends_on:
+      - database
+    env_file:
+      - ./.env
+    environment:
+      APP_NAME: "${COMPOSE_PROJECT_NAME}"
+      DB_DATABASE: "${DATABASE_NAME}"
+      DB_USERNAME: "${DATABASE_USER}"
+      DB_PASSWORD: "${DATABASE_PASSWORD}"
+
+  database:
+    build:
+      context: ./services/mysql
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - "${DATABASE_PORT}:3306"
+    environment:
+      TZ: "${TZ}"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_ROOT_PASSWORD: "${DATABASE_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DATABASE_NAME}"
+      MYSQL_USER: "${DATABASE_USER}"
+      MYSQL_PASSWORD: "${DATABASE_PASSWORD}"
+
+volumes:
+  mysql:
