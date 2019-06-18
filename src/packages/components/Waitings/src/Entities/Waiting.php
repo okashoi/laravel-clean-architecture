@@ -43,4 +43,13 @@ class Waiting
     {
         $this->note = $note;
     }
+
+    /**
+     * 連絡待ちを完了する
+     * @return Completed
+     */
+    public function convertToCompleted(): Completed
+    {
+        return new Completed($this->id, $this->name, $this->note);
+    }
 }
