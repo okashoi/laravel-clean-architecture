@@ -38,13 +38,12 @@ final class Inbox extends Task
      *
      * @param StartDate $startDate
      * @return Scheduled
-     * @throws \Exception 見積もり時間が設定されていない場合
+     * @throws EstimatedTimeNotSet 見積もり時間が設定されていない場合
      */
     public function convertToScheduled(StartDate $startDate): Scheduled
     {
         if (!$this->hasEstimatedTime()) {
-            // TODO: 独自例外を定義してそれを投げるようにする
-            throw new \Exception('見積もり時間が設定されていません');
+            throw new EstimatedTimeNotSet();
         }
 
         return new Scheduled($this->id, $this->name, $this->estimatedTime, $startDate);

@@ -2,8 +2,6 @@
 
 namespace MyApp\Components\Tasks\Entities;
 
-use InvalidArgumentException;
-
 /**
  * 見積もり時間 Value Object
  *
@@ -30,7 +28,7 @@ final class EstimatedTime
      * EstimatedTime constructor.
      * @param int $hours
      * @param int $minutes
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function __construct(int $hours, int $minutes)
     {
@@ -52,7 +50,7 @@ final class EstimatedTime
      * @param int $hours 見積もり時間（時間）
      * @param int $minutes 見積もり時間（分）
      * @return EstimatedTime
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function fromHoursAndMinutes(int $hours, int $minutes): self
     {
