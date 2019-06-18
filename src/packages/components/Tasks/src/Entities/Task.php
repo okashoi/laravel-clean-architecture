@@ -31,7 +31,7 @@ abstract class Task
     {
         $this->id = $id;
         $this->name = $name;
-        $this->note = Note::fromNative('');
+        $this->note = new Note('');
     }
 
     /**
