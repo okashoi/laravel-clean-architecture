@@ -8,7 +8,7 @@ use Throwable;
  * Class EstimatedTimeNotSet
  * @package MyApp\Components\Tasks\Entities
  */
-class EstimatedTimeNotSet extends Exception
+final class EstimatedTimeNotSet extends Exception
 {
     /**
      * EstimatedTimeNotSet constructor.

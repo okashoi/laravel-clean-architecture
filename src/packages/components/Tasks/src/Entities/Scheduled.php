@@ -7,7 +7,7 @@ namespace MyApp\Components\Tasks\Entities;
  * Class Scheduled
  * @package MyApp\Components\Tasks\Entities
  */
-class Scheduled extends Task
+final class Scheduled extends Task
 {
     /**
      * @var EstimatedTime
