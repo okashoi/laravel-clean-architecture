@@ -19,17 +19,8 @@ final class StartDate
      * StartDate constructor.
      * @param DatetimeInterface $value
      */
-    private function __construct(DatetimeInterface $value)
+    public function __construct(DatetimeInterface $value)
     {
         $this->value = $value;
-    }
-
-    /**
-     * @param DatetimeInterface $value
-     * @return StartDate
-     */
-    public static function fromNative(DatetimeInterface $value): self
-    {
-        return static::fromNative($value);
     }
 }

@@ -30,7 +30,7 @@ final class EstimatedTime
      * @param int $minutes
      * @throws InvalidArgumentException
      */
-    private function __construct(int $hours, int $minutes)
+    public function __construct(int $hours, int $minutes)
     {
         if ($hours < 0) {
             throw new InvalidArgumentException('見積もり時間（時間）には正の整数を指定してください');
@@ -42,18 +42,5 @@ final class EstimatedTime
 
         $this->hours = $hours;
         $this->minutes = $minutes;
-    }
-
-    /**
-     * 見積もり時間の時間・分からインスタンスを生成
-     *
-     * @param int $hours 見積もり時間（時間）
-     * @param int $minutes 見積もり時間（分）
-     * @return EstimatedTime
-     * @throws InvalidArgumentException
-     */
-    public static function fromHoursAndMinutes(int $hours, int $minutes): self
-    {
-        return new static($hours, $minutes);
     }
 }
