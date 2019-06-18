@@ -39,7 +39,7 @@ abstract class Task
      *
      * @param Note $note
      */
-    public function updateNote(Note $note): void
+    final public function updateNote(Note $note): void
     {
         $this->note = $note;
     }

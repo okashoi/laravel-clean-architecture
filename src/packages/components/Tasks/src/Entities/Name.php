@@ -8,7 +8,7 @@ namespace MyApp\Components\Tasks\Entities;
  * Class Name
  * @package MyApp\Components\Tasks\Entities
  */
-class Name
+final class Name
 {
     /**
      * @var string

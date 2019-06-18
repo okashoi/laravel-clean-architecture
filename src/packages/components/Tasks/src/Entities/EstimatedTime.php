@@ -2,13 +2,15 @@
 
 namespace MyApp\Components\Tasks\Entities;
 
+use InvalidArgumentException;
+
 /**
  * 見積もり時間 Value Object
  *
  * Class EstimatedTime
  * @package MyApp\Components\Tasks\Entities
  */
-class EstimatedTime
+final class EstimatedTime
 {
     /**
      * 見積もり時間（時間）
@@ -33,11 +35,11 @@ class EstimatedTime
     private function __construct(int $hours, int $minutes)
     {
         if ($hours < 0) {
-            throw new \InvalidArgumentException();
+            throw new InvalidArgumentException();
         }
 
         if ($minutes < 0 || 59 < $minutes) {
-            throw new \InvalidArgumentException();
+            throw new InvalidArgumentException();
         }
 
         $this->hours = $hours;

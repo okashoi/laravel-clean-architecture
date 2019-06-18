@@ -6,7 +6,7 @@ namespace MyApp\Components\Tasks\Entities;
  * Class Inbox
  * @package MyApp\Components\Tasks\Entities
  */
-class Inbox extends Task
+final class Inbox extends Task
 {
     /**
      * @var EstimatedTime|null
