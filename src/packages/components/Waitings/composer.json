@@ -16,5 +16,10 @@
     "psr-4": {
       "MyApp\\Components\\Waitings\\": "./src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Components\\Waitings\\": "./tests"
+    }
   }
 }
