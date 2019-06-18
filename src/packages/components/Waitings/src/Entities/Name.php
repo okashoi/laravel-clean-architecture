@@ -6,7 +6,7 @@ namespace MyApp\Components\Waitings\Entities;
  * 連絡待ち名 Value Object
  * @package MyApp\Components\Waitings\Entities
  */
-class Name
+final class Name
 {
     /**
      * @var string

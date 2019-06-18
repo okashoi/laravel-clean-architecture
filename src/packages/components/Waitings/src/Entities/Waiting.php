@@ -6,7 +6,7 @@ namespace MyApp\Components\Waitings\Entities;
  * Class Waiting
  * @package MyApp\Components\Waitings\Entities
  */
-class Waiting
+final class Waiting
 {
     /**
      * @var Id
