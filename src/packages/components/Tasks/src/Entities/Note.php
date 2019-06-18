@@ -16,7 +16,7 @@ final class Note
     private $value;
 
     /**
-     * Name constructor.
+     * Note constructor.
      * @param string $value
      */
     public function __construct(string $value)
