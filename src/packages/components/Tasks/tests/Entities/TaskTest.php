@@ -18,7 +18,7 @@ class TaskTest extends TestCase
      * @test
      * @doesNotPerformAssertions
      */
-    public function 「タスク」は必ず「タスクID」「タスク名」を持つ()
+    public function 「タスク」は必ず「タスクID」「タスク名」を持つこと()
     {
         $id = new Id(1);
         $name = new Name('test');
@@ -29,7 +29,7 @@ class TaskTest extends TestCase
      * @test
      * @doesNotPerformAssertions
      */
-    public function 「タスク」は任意で「メモ」を持てる()
+    public function 「タスク」は任意で「メモ」を持てること()
     {
         $id = new Id(1);
         $name = new Name('test');
