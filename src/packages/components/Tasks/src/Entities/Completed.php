@@ -6,8 +6,23 @@ namespace MyApp\Components\Tasks\Entities;
  * Class Completed
  * @package MyApp\Components\Tasks\Entities
  */
-final class Completed extends Task
+final class Completed
 {
+    /**
+     * @var Id
+     */
+    protected $id;
+
+    /**
+     * @var Name
+     */
+    protected $name;
+
+    /**
+     * @var Note
+     */
+    protected $note;
+
     /**
      * Completed constructor.
      * @param Id $id
@@ -16,8 +31,8 @@ final class Completed extends Task
      */
     public function __construct(Id $id, Name $name, Note $note)
     {
-        parent::__construct($id, $name);
-
+        $this->id = $id;
+        $this->name = $name;
         $this->note = $note;
     }
 }
