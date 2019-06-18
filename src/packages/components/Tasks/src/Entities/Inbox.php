@@ -2,7 +2,7 @@
 
 namespace MyApp\Components\Tasks\Entities;
 
-use Datetime;
+use DatetimeImmutable;
 
 /**
  * Class Inbox
@@ -49,7 +49,7 @@ final class Inbox extends Task
             throw new EstimatedTimeNotSet();
         }
 
-        if ($startDate < new DateTime('today')) {
+        if ($startDate->value() < new DatetimeImmutable('today')) {
             throw new InvalidArgumentException('着手日は今日以降の日付を指定してください');
         }
 
