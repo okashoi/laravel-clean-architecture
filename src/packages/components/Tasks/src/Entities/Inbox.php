@@ -2,6 +2,8 @@
 
 namespace MyApp\Components\Tasks\Entities;
 
+use Datetime;
+
 /**
  * Class Inbox
  * @package MyApp\Components\Tasks\Entities
@@ -39,11 +41,16 @@ final class Inbox extends Task
      * @param StartDate $startDate
      * @return Scheduled
      * @throws EstimatedTimeNotSet 見積もり時間が設定されていない場合
+     * @throws InvalidArgumentException
      */
     public function convertToScheduled(StartDate $startDate): Scheduled
     {
         if (!$this->hasEstimatedTime()) {
             throw new EstimatedTimeNotSet();
+        }
+
+        if ($startDate < new DateTime('today')) {
+            throw new InvalidArgumentException('着手日は今日以降の日付を指定してください');
         }
 
         return new Scheduled($this->id, $this->name, $this->estimatedTime, $startDate);
