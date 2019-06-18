@@ -32,4 +32,14 @@ final class Scheduled extends Task
         $this->startDate = $startDate;
         $this->note = $note;
     }
+
+    /**
+     * タスクを完了する
+     *
+     * @return Completed
+     */
+    public function convertToCompleted(): Completed
+    {
+        return new Completed($this->id, $this->name, $this->note);
+    }
 }
