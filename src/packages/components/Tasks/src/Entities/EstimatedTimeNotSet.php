@@ -16,7 +16,7 @@ class EstimatedTimeNotSet extends Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($message = '見積もり時間が設定されていません', $code = 0, Throwable $previous = null)
+    public function __construct($message = '先に見積もり時間を設定してください', $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -33,11 +33,11 @@ final class EstimatedTime
     private function __construct(int $hours, int $minutes)
     {
         if ($hours < 0) {
-            throw new InvalidArgumentException();
+            throw new InvalidArgumentException('見積もり時間（時間）には正の整数を指定してください');
         }
 
         if ($minutes < 0 || 59 < $minutes) {
-            throw new InvalidArgumentException();
+            throw new InvalidArgumentException('見積もり時間（分）には 0〜59 の範囲の整数を指定してください');
         }
 
         $this->hours = $hours;
