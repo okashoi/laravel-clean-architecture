@@ -53,6 +53,6 @@ final class Inbox extends Task
             throw new InvalidArgumentException('着手日は今日以降の日付を指定してください');
         }
 
-        return new Scheduled($this->id, $this->name, $this->estimatedTime, $startDate);
+        return new Scheduled($this->id, $this->name, $this->estimatedTime, $startDate, $this->note);
     }
 }

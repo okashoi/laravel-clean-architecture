@@ -24,11 +24,12 @@ final class Scheduled extends Task
      * @param Id $id
      * @param Name $name
      */
-    public function __construct(Id $id, Name $name, EstimatedTime $estimatedTime, StartDate $startDate)
+    public function __construct(Id $id, Name $name, EstimatedTime $estimatedTime, StartDate $startDate, Note $note)
     {
         parent::__construct($id, $name);
 
         $this->estimatedTime = $estimatedTime;
         $this->startDate = $startDate;
+        $this->note = $note;
     }
 }
