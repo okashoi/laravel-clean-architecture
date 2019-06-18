@@ -3,7 +3,7 @@
 namespace Tests\Components\Tasks\Entities;
 
 use PHPUnit\Framework\TestCase;
-use DateTime;
+use DateTimeImmutable;
 use MyApp\Components\Tasks\Entities\Id;
 use MyApp\Components\Tasks\Entities\Name;
 use MyApp\Components\Tasks\Entities\Inbox;
@@ -25,7 +25,7 @@ class InboxTest extends TestCase
         $estimatedTime = new EstimatedTime(1, 0);
         $inbox->estimateTime($estimatedTime);
 
-        $startDate = new StartDate(new DateTime('tomorrow'));
+        $startDate = new StartDate(new DateTimeImmutable('tomorrow'));
 
         $scheduled = $inbox->convertToScheduled($startDate);
 
@@ -56,7 +56,7 @@ class InboxTest extends TestCase
         $name = new Name('test');
         $inbox = new Inbox($id, $name);
 
-        $startDate = new StartDate(new DateTime('tomorrow'));
+        $startDate = new StartDate(new DateTimeImmutable('tomorrow'));
 
         $inbox->convertToScheduled($startDate);
     }
@@ -74,7 +74,7 @@ class InboxTest extends TestCase
         $estimatedTime = new EstimatedTime(1, 0);
         $inbox->estimateTime($estimatedTime);
 
-        $startDate = new StartDate(new DateTime('yesterday'));
+        $startDate = new StartDate(new DateTimeImmutable('yesterday'));
 
         $inbox->convertToScheduled($startDate);
     }
