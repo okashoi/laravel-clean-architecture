@@ -11,6 +11,10 @@ use MyApp\Components\Tasks\Entities\EstimatedTime;
 use MyApp\Components\Tasks\Entities\StartDate;
 use MyApp\Components\Tasks\Entities\Scheduled;
 
+/**
+ * Class InboxTest
+ * @package Tests\Components\Tasks\Entities
+ */
 class InboxTest extends TestCase
 {
     /**
