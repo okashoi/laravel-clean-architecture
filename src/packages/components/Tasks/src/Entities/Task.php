@@ -43,4 +43,28 @@ abstract class Task
     {
         $this->note = $note;
     }
+
+    /**
+     * @return Id
+     */
+    final public function id(): Id
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Name
+     */
+    final public function name(): Name
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Note
+     */
+    final public function note(): Note
+    {
+        return $this->note;
+    }
 }

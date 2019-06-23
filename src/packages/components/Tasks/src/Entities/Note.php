@@ -23,4 +23,12 @@ final class Note
     {
         $this->value = $value;
     }
+
+    /**
+     * @return string
+     */
+    public function value(): string
+    {
+        return $this->value;
+    }
 }

@@ -28,4 +28,12 @@ final class Id
 
         $this->value = $value;
     }
+
+    /**
+     * @return int
+     */
+    public function value(): int
+    {
+        return $this->value;
+    }
 }
