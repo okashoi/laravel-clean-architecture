@@ -21,6 +21,12 @@ class CreateScheduledsTable extends Migration
             $table->date('start_date')->nullable();
             $table->text('note');
             $table->timestamps();
+
+            $table->foreign('id')
+                ->references('id')
+                ->on('inboxes')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

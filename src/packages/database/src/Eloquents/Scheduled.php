@@ -3,6 +3,7 @@
 namespace MyApp\Database\Eloquents;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasOne};
 
 /**
  * Class Scheduled
@@ -45,4 +46,20 @@ class Scheduled extends Model
     protected $dates = [
         'start_date',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function inbox(): BelongsTo
+    {
+        return $this->belongsTo(Inbox::class, 'id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function completed(): HasOne
+    {
+        return $this->hasOne(Completed::class, 'id');
+    }
 }

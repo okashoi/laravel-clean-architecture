@@ -3,6 +3,7 @@
 namespace MyApp\Database\Eloquents;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{HasOne, HasOneThrough};
 
 /**
  * Class Inbox
@@ -29,4 +30,20 @@ class Inbox extends Model
         'name' => 'string',
         'note' => 'string',
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function scheduled(): HasOne
+    {
+        return $this->hasOne(Scheduled::class, 'id');
+    }
+
+    /**
+     * @return HasOneThrough
+     */
+    public function completed(): HasOneThrough
+    {
+        return $this->hasOneThrough(Comleted::class, Scheduled::class, 'id', 'id');
+    }
 }

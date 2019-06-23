@@ -3,6 +3,7 @@
 namespace MyApp\Database\Eloquents;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo};
 
 /**
  * Class Completed
@@ -45,4 +46,20 @@ class Completed extends Model
     protected $dates = [
         'start_date',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function inbox(): BelongsTo
+    {
+        return $this->belongsTo(Inbox::class, 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function scheduled(): BelongsTo
+    {
+        return $this->belongsTo(Scheduled::class, 'id');
+    }
 }

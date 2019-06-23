@@ -21,6 +21,12 @@ class CreateCompletedsTable extends Migration
             $table->date('start_date');
             $table->text('note');
             $table->timestamps();
+
+            $table->foreign('id')
+                ->references('id')
+                ->on('scheduleds')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
