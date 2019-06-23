@@ -2,7 +2,7 @@
 
 namespace MyApp\Components\Tasks\UseCases;
 
-use MyApp\Components\Tasks\Entities\{Task, Id};
+use MyApp\Components\Tasks\Entities\{Task, Inbox, Id};
 
 /**
  * Interface TaskRepository
@@ -11,7 +11,15 @@ use MyApp\Components\Tasks\Entities\{Task, Id};
 interface TaskRepository
 {
     /**
-     * 与えられたタスクを永続化する
+     * 与えられたタスク（識別子なし）を新しく永続化する
+     *
+     * @param InboxWithoutId $task
+     * @return Task
+     */
+    public function create(InboxWithoutId $task): Inbox;
+
+    /**
+     * 与えられたタスクを更新する
      *
      * @param Task $task
      */

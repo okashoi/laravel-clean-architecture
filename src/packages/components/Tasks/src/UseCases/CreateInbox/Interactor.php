@@ -2,8 +2,8 @@
 
 namespace MyApp\Components\Tasks\UseCases\CreateInbox;
 
-use MyApp\Components\Tasks\Entities\{Inbox, Id, Name, Note};
-use Myapp\Components\Tasks\UseCases\TaskRepository;
+use MyApp\Components\Tasks\Entities\{Task, Name, Note};
+use MyApp\Components\Tasks\UseCases\{InboxWithoutId, TaskRepository};
 
 /**
  * Class Interactor
@@ -32,9 +32,9 @@ final class Interactor implements InputBoundary
      */
     public function __invoke(InputData $input): void
     {
-        $inbox = $this->produceEntity($input);
+        $inboxWithoutId = $this->produceEntity($input);
 
-        $this->taskRepository->save($inbox);
+        $inbox = $this->taskRepository->create($inboxWithoutId);
 
         $normalOutput = $this->produceNormalOutputData($inbox);
 
@@ -43,28 +43,27 @@ final class Interactor implements InputBoundary
 
     /**
      * @param InputData $input
-     * @return Inbox
+     * @return InboxWithoutId
      */
-    private function produceEntity(InputData $input): Inbox
+    private function produceEntity(InputData $input): InboxWithoutId
     {
-        $inbox = new Inbox(
-            new Id(1), // TODO: ID が未確定でインスタンス化できる仕組み
+        $inboxWithoutId = new InboxWithoutId(
             new Name($input->name())
         );
 
         if ($input->hasNote()) {
             $note = new Note($input->note());
-            $inbox->updateNote($note);
+            $inboxWithoutId->updateNote($note);
         }
 
-        return $inbox;
+        return $inboxWithoutId;
     }
 
     /**
-     * @param Inbox $inbox
+     * @param Task $inbox
      * @return NormalOutputData
      */
-    private function produceNormalOutputData(Inbox $inbox): NormalOutputData
+    private function produceNormalOutputData(Task $inbox): NormalOutputData
     {
         return new NormalOutputData(
             $inbox->id()->value(),
