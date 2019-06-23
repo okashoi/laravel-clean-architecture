@@ -2,8 +2,8 @@
 
 namespace MyApp\Components\Tasks\UseCases\CreateInbox;
 
-use MyApp\Components\Tasks\Entities\{Task, Name, Note};
-use MyApp\Components\Tasks\UseCases\{InboxWithoutId, TaskRepository};
+use MyApp\Components\Tasks\Entities\{Inbox, Task, Name, Note};
+use MyApp\Components\Tasks\UseCases\{IdProvider, TaskRepository};
 
 /**
  * Class Interactor
@@ -11,6 +11,11 @@ use MyApp\Components\Tasks\UseCases\{InboxWithoutId, TaskRepository};
  */
 final class Interactor implements InputBoundary
 {
+    /**
+     * @var IdProvider
+     */
+    private $idProvider;
+
     /**
      * @var TaskRepository
      */
@@ -23,11 +28,13 @@ final class Interactor implements InputBoundary
 
     /**
      * Interactor constructor.
+     * @param IdProvider $idProvider
      * @param TaskRepository $taskRepository
      * @param NormalOutputBoundary $normalOutputBoundary
      */
-    public function __construct(TaskRepository $taskRepository, NormalOutputBoundary $normalOutputBoundary)
+    public function __construct(IdProvider $idProvider, TaskRepository $taskRepository, NormalOutputBoundary $normalOutputBoundary)
     {
+        $this->idProvider = $idProvider;
         $this->taskRepository = $taskRepository;
         $this->normalOutputBoundary = $normalOutputBoundary;
     }
@@ -37,9 +44,9 @@ final class Interactor implements InputBoundary
      */
     public function __invoke(InputData $input): void
     {
-        $inboxWithoutId = $this->produceEntity($input);
+        $inbox = $this->produceEntity($input);
 
-        $inbox = $this->taskRepository->create($inboxWithoutId);
+        $this->taskRepository->save($inbox);
 
         $normalOutput = $this->produceNormalOutputData($inbox);
 
@@ -48,20 +55,21 @@ final class Interactor implements InputBoundary
 
     /**
      * @param InputData $input
-     * @return InboxWithoutId
+     * @return Task
      */
-    private function produceEntity(InputData $input): InboxWithoutId
+    private function produceEntity(InputData $input): Task
     {
-        $inboxWithoutId = new InboxWithoutId(
+        $inbox = new Inbox(
+            $this->idProvider->provide(),
             new Name($input->name())
         );
 
         if ($input->hasNote()) {
             $note = new Note($input->note());
-            $inboxWithoutId->updateNote($note);
+            $inbox->updateNote($note);
         }
 
-        return $inboxWithoutId;
+        return $inbox;
     }
 
     /**
@@ -71,7 +79,7 @@ final class Interactor implements InputBoundary
     private function produceNormalOutputData(Task $inbox): NormalOutputData
     {
         return new NormalOutputData(
-            $inbox->id()->value(),
+            (string)($inbox->id()),
             $inbox->name()->value(),
             $inbox->note()->value()
         );

@@ -2,8 +2,8 @@
 
 namespace Tests\Components\Tasks\UseCases\CreateInbox;
 
-use MyApp\Components\Tasks\Entities\{Id, Inbox, Task, InvalidArgumentException};
-use MyApp\Components\Tasks\UseCases\{InboxWithoutId, TaskRepository, NotFoundException};
+use MyApp\Components\Tasks\Entities\{Id, Task};
+use MyApp\Components\Tasks\UseCases\{TaskRepository, NotFoundException};
 
 /**
  * Class InMemoryTaskRepository
@@ -11,11 +11,6 @@ use MyApp\Components\Tasks\UseCases\{InboxWithoutId, TaskRepository, NotFoundExc
  */
 final class InMemoryTaskRepository implements TaskRepository
 {
-    /**
-     * @var int
-     */
-    private $nextId;
-
     /**
      * @var array[Task]
      */
@@ -26,25 +21,7 @@ final class InMemoryTaskRepository implements TaskRepository
      */
     public function __construct()
     {
-        $this->nextId = 1;
         $this->tasks = [];
-    }
-
-    /**
-     * @param InboxWithoutId $task
-     * @return Inbox
-     * @throws InvalidArgumentException
-     */
-    public function create(InboxWithoutId $task): Inbox
-    {
-        $id = new Id($this->nextId);
-        $inbox = new Inbox($id, $task->name());
-        $inbox->updateNote($task->note());
-
-        $this->tasks[$this->nextId] = $inbox;
-        $this->nextId++;
-
-        return $inbox;
     }
 
     /**
@@ -52,7 +29,7 @@ final class InMemoryTaskRepository implements TaskRepository
      */
     public function save(Task $task): void
     {
-        $this->tasks[$task->id()->value()] = $task;
+        $this->tasks[(string)$task->id()] = $task;
     }
 
     /**
@@ -62,10 +39,10 @@ final class InMemoryTaskRepository implements TaskRepository
      */
     public function findById(Id $id): Task
     {
-        if (!isset($this->tasks[$id->value()])) {
+        if (!isset($this->tasks[(string)$id])) {
             throw new NotFoundException();
         }
 
-        return $this->tasks[$id->value()];
+        return $this->tasks[(string)$id];
     }
 }

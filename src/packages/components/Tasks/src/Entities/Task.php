@@ -67,4 +67,14 @@ abstract class Task
     {
         return $this->note;
     }
+
+    /**
+     * タスクエンティティの同一性を判定
+     * @param self $another
+     * @return bool
+     */
+    final public function isIdenticalTo(self $another): bool
+    {
+        return $this->id->equals($another->id());
+    }
 }

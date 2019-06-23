@@ -2,15 +2,10 @@
 
 namespace Tests\Components\Tasks\Entities;
 
-use MyApp\Components\Tasks\Entities\Note;
-use MyApp\Components\Tasks\Entities\Scheduled;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable;
-use MyApp\Components\Tasks\Entities\Id;
-use MyApp\Components\Tasks\Entities\Name;
-use MyApp\Components\Tasks\Entities\EstimatedTime;
-use MyApp\Components\Tasks\Entities\StartDate;
-use MyApp\Components\Tasks\Entities\Completed;
+use MyApp\Components\Tasks\Entities\{Id, Name, Note, Scheduled, EstimatedTime, StartDate, Completed};
 
 /**
  * Class ScheduledTest
@@ -23,7 +18,7 @@ class ScheduledTest extends TestCase
      */
     public function 「Scheduled」は「完了」できること()
     {
-        $id = new Id(1);
+        $id = Mockery::mock(Id::class);
         $name = new Name('test');
         $estimatedTime = new EstimatedTime(1, 0);
         $startDate = new StartDate(new DateTimeImmutable('tomorrow'));

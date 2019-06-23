@@ -9,7 +9,7 @@ namespace MyApp\Components\Tasks\UseCases\CreateInbox;
 final class NormalOutputData
 {
     /**
-     * @var int
+     * @var string
      */
     private $taskId;
 
@@ -25,11 +25,11 @@ final class NormalOutputData
 
     /**
      * NormalOutputData constructor.
-     * @param int $taskId
+     * @param string $taskId
      * @param string $taskName
      * @param string $taskNote
      */
-    public function __construct(int $taskId, string $taskName, string $taskNote)
+    public function __construct(string $taskId, string $taskName, string $taskNote)
     {
         $this->taskId = $taskId;
         $this->taskName = $taskName;
@@ -37,9 +37,9 @@ final class NormalOutputData
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function taskId(): int
+    public function taskId(): string
     {
         return $this->taskId;
     }
