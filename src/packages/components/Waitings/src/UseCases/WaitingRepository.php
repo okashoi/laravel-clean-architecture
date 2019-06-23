@@ -1,10 +1,12 @@
 <?php
 
-namespace MyApp\Components\Waitings\Entities;
+namespace MyApp\Components\Waitings\UseCases;
+
+use MyApp\Components\Waitings\Entities\{Waiting, Id};
 
 /**
  * Interface WaitingRepository
- * @package MyApp\Components\Waitings\Entities
+ * @package MyApp\Components\Waitings\UseCases
  */
 interface WaitingRepository
 {

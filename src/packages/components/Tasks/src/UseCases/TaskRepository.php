@@ -1,10 +1,12 @@
 <?php
 
-namespace MyApp\Components\Tasks\Entities;
+namespace MyApp\Components\Tasks\UseCases;
+
+use MyApp\Components\Tasks\Entities\{Task, Id};
 
 /**
  * Interface TaskRepository
- * @package MyApp\Components\Tasks\Entities
+ * @package MyApp\Components\Tasks\UseCases
  */
 interface TaskRepository
 {
