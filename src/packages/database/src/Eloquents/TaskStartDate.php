@@ -3,25 +3,23 @@
 namespace MyApp\Database\Eloquents;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo};
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class Completed
+ * Class TaskStartDate
  * @package MyApp\Database\Eloquents
  */
-class Completed extends Model
+class TaskStartDate extends Model
 {
+    protected $primaryKey = 'task_id';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
-        'estimated_time_hours',
-        'estimated_time_seconds',
         'start_date',
-        'note',
     ];
 
     /**
@@ -30,12 +28,8 @@ class Completed extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'name' => 'string',
-        'estimated_time_hours' => 'integer',
-        'estimated_time_seconds' => 'integer',
+        'task_id' => 'integer',
         'start_date' => 'date',
-        'note' => 'string',
     ];
 
     /**
@@ -50,16 +44,8 @@ class Completed extends Model
     /**
      * @return BelongsTo
      */
-    public function inbox(): BelongsTo
+    public function task(): BelongsTo
     {
-        return $this->belongsTo(Inbox::class, 'id');
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function scheduled(): BelongsTo
-    {
-        return $this->belongsTo(Scheduled::class, 'id');
+        return $this->belongsTo(Task::class);
     }
 }

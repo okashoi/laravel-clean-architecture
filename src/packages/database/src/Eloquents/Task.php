@@ -3,13 +3,13 @@
 namespace MyApp\Database\Eloquents;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\{HasOne, HasOneThrough};
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * Class Inbox
+ * Class Task
  * @package MyApp\Database\Eloquents
  */
-class Inbox extends Model
+class Task extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -34,16 +34,24 @@ class Inbox extends Model
     /**
      * @return HasOne
      */
-    public function scheduled(): HasOne
+    public function estimatedTime(): HasOne
     {
-        return $this->hasOne(Scheduled::class, 'id');
+        return $this->hasOne(EstimatedTime::class);
     }
 
     /**
-     * @return HasOneThrough
+     * @return HasOne
      */
-    public function completed(): HasOneThrough
+    public function startDate(): HasOne
     {
-        return $this->hasOneThrough(Comleted::class, Scheduled::class, 'id', 'id');
+        return $this->hasOne(TaskStartDate::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function completed(): HasOne
+    {
+        return $this->hasOne(CompletedTask::class);
     }
 }
