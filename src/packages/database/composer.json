@@ -18,5 +18,12 @@
     "psr-4": {
       "MyApp\\Database\\": "./src"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MyApp\\Database\\ServiceProvider"
+      ]
+    }
   }
 }
