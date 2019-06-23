@@ -21,6 +21,11 @@ final class Interactor implements InputBoundary
      */
     private $normalOutputBoundary;
 
+    /**
+     * Interactor constructor.
+     * @param TaskRepository $taskRepository
+     * @param NormalOutputBoundary $normalOutputBoundary
+     */
     public function __construct(TaskRepository $taskRepository, NormalOutputBoundary $normalOutputBoundary)
     {
         $this->taskRepository = $taskRepository;
