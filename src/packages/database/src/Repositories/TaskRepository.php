@@ -2,7 +2,7 @@
 
 namespace MyApp\Database\Repositories;
 
-use MyApp\Components\Tasks\Entities\{Id, Task, Inbox, Scheduled, Completed};
+use MyApp\Components\Tasks\Entities\{Id, Name, Note, EstimatedTime, StartDate, Task, Inbox, Scheduled, Completed};
 use MyApp\Components\Tasks\UseCases\{
     TaskRepository as TaskRepositoryInterface,
     NotFoundException
@@ -43,7 +43,8 @@ class TaskRepository implements TaskRepositoryInterface
 
         /** @var Eloquents\Task|null $taskRecord */
         $taskRecord = Eloquents\Task::find($idValue);
-        if (is_null($task)) {
+        if (is_null($taskRecord)) {
+            // TODO: 現象としては「Inbox から始まっていない」ことなので違う例外か
             throw new NotFoundException();
         }
 
@@ -74,10 +75,45 @@ class TaskRepository implements TaskRepositoryInterface
      *
      * @param Id $id
      * @return Task
+     * @throws InvalidArgumentException
      * @throws NotFoundException
+     * @throws EntityUnidentifiedException
      */
     public function findById(Id $id): Task
     {
-        // TODO: Implement findById() method.
+        if (!$id instanceof AutoIncrementTaskId) {
+            throw new InvalidArgumentException('AutoIncrementTaskId を渡してください');
+        }
+        /** @var AutoIncrementTaskId $id */
+        /** @var Eloquents\Task|null $taskRecord */
+        $taskRecord = Eloquents\Task::find($id->value());
+        if (is_null($taskRecord)) {
+            throw new NotFoundException();
+        }
+
+        // TODO: 以下、 Open-Closed Principle に反しているので直したい
+        if (is_null($taskRecord->startDate)) {
+            $task = new Inbox($id, new Name($taskRecord->name));
+
+            $task->updateNote(new Note($taskRecord->note ?? ''));
+
+            if (!is_null($taskRecord->estimatedTime)) {
+                $estimatedTime = new EstimatedTime($taskRecord->estimatedTime->hours, $taskRecord->estimatedTime->minutes);
+                $task->setEstimatedTime($estimatedTime);
+            }
+
+            return $task;
+        }
+
+        if (is_null($taskRecord->completed)) {
+            $name = new Name($taskRecord->name);
+            $estimatedTime = new EstimatedTime($taskRecord->estimatedTime->hours, $taskRecord->estimatedTime->minutes);
+            $startDate = new StartDate($taskRecord->startDate->start_date);
+            $note = new Note($taskRecord->note ?? '');
+
+            return new Scheduled($id, $name, $estimatedTime, $startDate, $note);
+        }
+
+        return new Completed($id, new Name($taskRecord->name), new Note($taskRecord->note ?? ''));
     }
 }

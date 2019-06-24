@@ -9,7 +9,7 @@ use MyApp\Components\Tasks\UseCases\IdProvider;
  * Class AutoIncrementTaskIdProvider
  * @package MyApp\Database\Repositories
  */
-class AutoIncrementTaskIdProvider implements IdProvider
+final class AutoIncrementTaskIdProvider implements IdProvider
 {
     /**
      * タスク ID を供給する
