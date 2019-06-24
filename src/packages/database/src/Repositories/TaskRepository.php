@@ -41,12 +41,32 @@ class TaskRepository implements TaskRepositoryInterface
             return;
         }
 
-        $task = Eloquents\Task::find($idValue);
+        /** @var Eloquents\Task|null $taskRecord */
+        $taskRecord = Eloquents\Task::find($idValue);
         if (is_null($task)) {
             throw new NotFoundException();
         }
 
-        // TODO: 既存レコード更新処理
+        // TODO: 以下、 Open-Closed Principle に反しているので直したい
+        if ((($task instanceof Inbox) && $task->hasEstimatedTime()) || $task instanceof Scheduled) {
+            /** @var Inbox|Scheduled $task */
+            $taskRecord->estimatedTime()->updateOrCreate([
+                'hours' => $task->estimatedTime()->hours(),
+                'minutes' => $task->estimatedTime()->minutes(),
+            ]);
+        }
+
+        if ($task instanceof Scheduled) {
+            /** @var Scheduled $task */
+            $taskRecord->startDate()->updateOrCreate([
+                'start_date' => $task->startDate()->value(),
+            ]);
+        }
+
+        if ($task instanceof Completed) {
+            /** @var Completed $task */
+            $taskRecord->completed()->updateOrCreate([]);
+        }
     }
 
     /**
