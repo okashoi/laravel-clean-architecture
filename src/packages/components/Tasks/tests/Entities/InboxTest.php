@@ -23,7 +23,7 @@ class InboxTest extends TestCase
         $inbox = new Inbox($id, $name);
 
         $estimatedTime = new EstimatedTime(1, 0);
-        $inbox->estimateTime($estimatedTime);
+        $inbox->setEstimatedTime($estimatedTime);
 
         $startDate = new StartDate(new DateTimeImmutable('tomorrow'));
 
@@ -43,7 +43,7 @@ class InboxTest extends TestCase
         $inbox = new Inbox($id, $name);
 
         $estimatedTime = new EstimatedTime(1, 0);
-        $inbox->estimateTime($estimatedTime);
+        $inbox->setEstimatedTime($estimatedTime);
     }
 
     /**
@@ -72,10 +72,27 @@ class InboxTest extends TestCase
         $inbox = new Inbox($id, $name);
 
         $estimatedTime = new EstimatedTime(1, 0);
-        $inbox->estimateTime($estimatedTime);
+        $inbox->setEstimatedTime($estimatedTime);
 
         $startDate = new StartDate(new DateTimeImmutable('yesterday'));
 
         $inbox->convertToScheduled($startDate);
+    }
+
+    /**
+     * @test
+     */
+    public function testHasEstimatedTime()
+    {
+        $id = Mockery::mock(Id::class);
+        $name = new Name('test');
+        $inbox = new Inbox($id, $name);
+
+        $this->assertFalse($inbox->hasEstimatedTime());
+
+        $estimatedTime = new EstimatedTime(1, 0);
+        $inbox->setEstimatedTime($estimatedTime);
+
+        $this->assertTrue($inbox->hasEstimatedTime());
     }
 }

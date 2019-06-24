@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42cbf1d36e5c3e3ff31dd73c20857b76",
+    "content-hash": "eca10f05e82cca3db40670a7da83db15",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -987,6 +987,42 @@
             "autoload": {
                 "psr-4": {
                     "MyApp\\Console\\": "./src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Okada Shohei",
+                    "email": "okashoicircus0@gmail.com"
+                }
+            ]
+        },
+        {
+            "name": "okashoi/myapp-database",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./packages/database",
+                "reference": "f01b28b687d637ee942185c321fea116b40761c3"
+            },
+            "require": {
+                "illuminate/database": "5.8.*",
+                "illuminate/support": "5.8.*",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MyApp\\Database\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MyApp\\Database\\": "./src"
                 }
             },
             "authors": [
@@ -4775,6 +4811,7 @@
     "stability-flags": {
         "okashoi/myapp-api": 20,
         "okashoi/myapp-console": 20,
+        "okashoi/myapp-database": 20,
         "okashoi/myapp-task-component": 20,
         "okashoi/myapp-waiting-component": 20,
         "okashoi/myapp-web": 20

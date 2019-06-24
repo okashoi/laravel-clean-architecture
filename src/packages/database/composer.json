@@ -1,0 +1,41 @@
+{
+  "name": "okashoi/myapp-database",
+  "authors": [
+    {
+      "name": "Okada Shohei",
+      "email": "okashoicircus0@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.3",
+    "illuminate/database": "5.8.*",
+      "illuminate/support": "5.8.*",
+      "okashoi/myapp-task-component": "*@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyApp\\Database\\": "./src"
+    }
+  },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Database\\": "./tests"
+        }
+    },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MyApp\\Database\\ServiceProvider"
+      ]
+    }
+  },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../components/Tasks"
+        }
+    ]
+}

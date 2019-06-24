@@ -35,6 +35,26 @@ abstract class Task
     }
 
     /**
+     * タスクID を再設定する
+     *
+     * @param Id $id
+     */
+    final public function resetId(Id $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * タスク名を変更する
+     *
+     * @param Name $name
+     */
+    final public function changeName(Name $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * メモを更新する
      *
      * @param Note $note

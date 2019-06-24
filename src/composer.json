@@ -21,6 +21,7 @@
     "laravel/tinker": "^1.0",
     "okashoi/myapp-api": "*@dev",
     "okashoi/myapp-console": "*@dev",
+    "okashoi/myapp-database": "*@dev",
     "okashoi/myapp-task-component": "*@dev",
     "okashoi/myapp-waiting-component": "*@dev",
     "okashoi/myapp-web": "*@dev"
@@ -57,7 +58,14 @@
     {"type": "path", "url": "./packages/components/Waitings"},
     {"type": "path", "url": "./packages/api"},
     {"type": "path", "url": "./packages/console"},
-    {"type": "path", "url": "./packages/web"}
+    {
+      "type": "path",
+      "url": "./packages/web"
+    },
+    {
+      "type": "path",
+      "url": "./packages/database"
+    }
   ],
   "autoload-dev": {
     "psr-4": {
