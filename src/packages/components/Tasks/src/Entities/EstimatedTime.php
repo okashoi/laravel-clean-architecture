@@ -43,4 +43,20 @@ final class EstimatedTime
         $this->hours = $hours;
         $this->minutes = $minutes;
     }
+
+    /**
+     * @return int
+     */
+    public function hours(): int
+    {
+        return $this->hours;
+    }
+
+    /**
+     * @return int
+     */
+    public function minutes(): int
+    {
+        return $this->minutes;
+    }
 }

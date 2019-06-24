@@ -13,14 +13,14 @@ final class Inbox extends Task
     /**
      * @var EstimatedTime|null
      */
-    protected $estimatedTime;
+    private $estimatedTime;
 
     /**
      * タスクの見積もり時間を設定する
      *
      * @param Estimatedtime $estimatedTime
      */
-    public function estimateTime(Estimatedtime $estimatedTime): void
+    public function setEstimatedTime(Estimatedtime $estimatedTime): void
     {
         $this->estimatedTime = $estimatedTime;
     }
@@ -30,9 +30,22 @@ final class Inbox extends Task
      *
      * @return bool 見積もり時間が設定されている場合 true / そうでない場合は false
      */
-    private function hasEstimatedTime(): bool
+    public function hasEstimatedTime(): bool
     {
         return !is_null($this->estimatedTime);
+    }
+
+    /**
+     * @return EstimatedTime
+     * @throws EstimatedTimeNotSet 見積もり時間が設定されていない場合
+     */
+    public function estimatedTime(): EstimatedTime
+    {
+        if (!$this->hasEstimatedTime()) {
+            throw new EstimatedTimeNotSet();
+        }
+
+        return $this->estimatedTime;
     }
 
     /**

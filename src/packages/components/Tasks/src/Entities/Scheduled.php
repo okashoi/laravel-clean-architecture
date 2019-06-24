@@ -42,4 +42,20 @@ final class Scheduled extends Task
     {
         return new Completed($this->id, $this->name, $this->note);
     }
+
+    /**
+     * @return EstimatedTime
+     */
+    public function estimatedTime(): EstimatedTime
+    {
+        return $this->estimatedTime;
+    }
+
+    /**
+     * @return StartDate
+     */
+    public function startDate(): StartDate
+    {
+        return $this->startDate;
+    }
 }
