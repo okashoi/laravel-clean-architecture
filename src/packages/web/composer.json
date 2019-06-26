@@ -7,7 +7,8 @@
     }
   ],
   "require": {
-    "php": "^7.3"
+      "php": "^7.3",
+      "okashoi/myapp-task-component": "*@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.5"
@@ -16,5 +17,23 @@
     "psr-4": {
       "MyApp\\Web\\": "./src"
     }
-  }
+  },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Web\\": "./tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MyApp\\Web\\ServiceProvider"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../components/Tasks"
+        }
+    ]
 }
