@@ -1,5 +1,3 @@
 <?php
 
-Route::post('tasks', function () {
-    return view('welcome');
-});
+Route::post('tasks', \MyApp\Web\Controllers\CreateInbox::class);
