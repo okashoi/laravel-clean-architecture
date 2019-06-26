@@ -2,7 +2,12 @@
 
 namespace App\Http;
 
+use Exception;
+use Illuminate\Http\Response as BaseResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
+use Throwable;
+use Illuminate\Foundation\Http\Events;
 
 class Kernel extends HttpKernel
 {
@@ -77,4 +82,39 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
+
+    /**
+     * Handle an incoming HTTP request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function handle($request)
+    {
+        try {
+            $request->enableHttpMethodParameterOverride();
+
+            $response = $this->sendRequestThroughRouter($request);
+
+            // TODO: Middleware のレスポンスを加工する側の処理が反映されていないので直す
+
+            if ($response->getContent() == '') {
+                $response = $this->app['response'];
+            }
+        } catch (Exception $e) {
+            $this->reportException($e);
+
+            $response = $this->renderException($request, $e);
+        } catch (Throwable $e) {
+            $this->reportException($e = new FatalThrowableError($e));
+
+            $response = $this->renderException($request, $e);
+        }
+
+        $this->app['events']->dispatch(
+            new Events\RequestHandled($request, $response)
+        );
+
+        return $response;
+    }
 }
