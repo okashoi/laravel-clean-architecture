@@ -2,6 +2,7 @@
 
 namespace MyApp\Web\Presenters\CreateInbox;
 
+use Illuminate\View\Factory;
 use MyApp\Web\Presenters\Presenter as BasePresenter;
 use MyApp\Components\Tasks\UseCases\CreateInbox\NormalOutputData;
 use MyApp\Components\Tasks\UseCases\CreateInbox\NormalOutputBoundary;
@@ -13,6 +14,20 @@ use MyApp\Components\Tasks\UseCases\CreateInbox\NormalOutputBoundary;
 final class Presenter extends BasePresenter implements NormalOutputBoundary
 {
     /**
+     * @var Factory
+     */
+    private $view;
+
+    /**
+     * Presenter constructor.
+     * @param Factory $view
+     */
+    public function __construct(Factory $view)
+    {
+        $this->view = $view;
+    }
+
+    /**
      * @param NormalOutputData $output
      */
     public function __invoke(NormalOutputData $output): void
@@ -23,6 +38,6 @@ final class Presenter extends BasePresenter implements NormalOutputBoundary
             $output->taskNote(),
             );
 
-        $this->respond('created');
+        $this->respond($this->view->make('web::tasks.create', compact(['viewModel'])));
     }
 }
