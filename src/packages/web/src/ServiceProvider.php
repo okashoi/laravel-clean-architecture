@@ -3,6 +3,10 @@
 namespace MyApp\Web;
 
 use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
+use MyApp\Components\Tasks\UseCases\CreateInbox\InputBoundary;
+use MyApp\Components\Tasks\UseCases\CreateInbox\Interactor;
+use MyApp\Components\Tasks\UseCases\CreateInbox\NormalOutputBoundary;
+use MyApp\Web\Presenters\CreateInbox\Presenter;
 
 /**
  * Class ServiceProvider
@@ -17,7 +21,9 @@ class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(InputBoundary::class, Interactor::class);
+
+        $this->app->bind(NormalOutputBoundary::class, Presenter::class);
     }
 
     /**
