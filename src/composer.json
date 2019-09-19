@@ -19,12 +19,9 @@
     "fideloper/proxy": "^4.0",
     "laravel/framework": "^6.0",
     "laravel/tinker": "^1.0",
-    "okashoi/myapp-api": "*@dev",
-    "okashoi/myapp-console": "*@dev",
-    "okashoi/myapp-database": "*@dev",
-    "okashoi/myapp-task-component": "*@dev",
-    "okashoi/myapp-waiting-component": "*@dev",
-    "okashoi/myapp-web": "*@dev"
+    "okashoi/myapp-create-inbox": "*@dev",
+    "okashoi/myapp-task": "*@dev",
+    "okashoi/myapp-waiting": "*@dev"
   },
   "require-dev": {
     "beyondcode/laravel-dump-server": "^1.0",
@@ -56,27 +53,15 @@
   "repositories": [
     {
       "type": "path",
-      "url": "./packages/components/Tasks"
+      "url": "./packages/Components/CreateInbox"
     },
     {
       "type": "path",
-      "url": "./packages/components/Waitings"
+      "url": "./packages/Entities/Task"
     },
     {
       "type": "path",
-      "url": "./packages/api"
-    },
-    {
-      "type": "path",
-      "url": "./packages/console"
-    },
-    {
-      "type": "path",
-      "url": "./packages/web"
-    },
-    {
-      "type": "path",
-      "url": "./packages/database"
+      "url": "./packages/Entities/Waiting"
     }
   ],
   "autoload-dev": {

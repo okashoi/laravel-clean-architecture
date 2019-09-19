@@ -1,0 +1,26 @@
+{
+  "name": "okashoi/myapp-task",
+  "authors": [
+    {
+      "name": "Okada Shohei",
+      "email": "okashoicircus0@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.3",
+    "mockery/mockery": "^1.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyApp\\Entities\\Task\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MyApp\\Entities\\Task\\Tests\\": "./tests"
+    }
+  }
+}

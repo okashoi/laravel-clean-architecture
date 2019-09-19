@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use MyApp\Components\Tasks\UseCases\IdProvider;
-use MyApp\Database\Repositories\AutoIncrementTaskIdProvider;
-use MyApp\Components\Tasks\UseCases\TaskRepository as TaskRepositoryInterface;
-use MyApp\Database\Repositories\TaskRepository;
+use MyApp\Components\CreateInbox\UseCase\IdProvider;
+use MyApp\Components\CreateInbox\DataAccess\Database\Repositories\TaskRepository;
+use MyApp\Components\CreateInbox\UseCase\TaskRepository as TaskRepositoryInterface;
+use MyApp\Components\CreateInbox\DataAccess\Database\Repositories\AutoIncrementTaskIdProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fd433786241c952d1ddea3defc501b1",
+    "content-hash": "eabf1e11e0149354db044af814c8aa35",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1073,71 +1073,16 @@
             "time": "2019-09-01T07:51:21+00:00"
         },
         {
-            "name": "okashoi/myapp-api",
+            "name": "okashoi/myapp-create-inbox",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "./packages/api",
-                "reference": "92ae0bfbb8f1dca039bfb692e3f6038d3307f78e"
+                "url": "./packages/Components/CreateInbox",
+                "reference": "0e5e31b16d229bbfc4c42a85a1e822f43383b13f"
             },
             "require": {
-                "php": "^7.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MyApp\\Api\\": "./src"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Okada Shohei",
-                    "email": "okashoicircus0@gmail.com"
-                }
-            ]
-        },
-        {
-            "name": "okashoi/myapp-console",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./packages/console",
-                "reference": "86536b214f5c910e4e52f7ab2ee298cd12b50c95"
-            },
-            "require": {
-                "php": "^7.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MyApp\\Console\\": "./src"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Okada Shohei",
-                    "email": "okashoicircus0@gmail.com"
-                }
-            ]
-        },
-        {
-            "name": "okashoi/myapp-database",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./packages/database",
-                "reference": "29158704b3e87bd5072f1c71e2438aa9e864a07e"
-            },
-            "require": {
-                "illuminate/database": "^6.0",
-                "illuminate/support": "^6.0",
-                "okashoi/myapp-task-component": "*@dev",
+                "laravel/framework": "^6.0",
+                "okashoi/myapp-task": "*@dev",
                 "php": "^7.3"
             },
             "require-dev": {
@@ -1147,18 +1092,18 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "MyApp\\Database\\ServiceProvider"
+                        "MyApp\\Components\\CreateInbox\\ServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "MyApp\\Database\\": "./src"
+                    "MyApp\\Components\\CreateInbox\\": "./src"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Tests\\Database\\": "./tests"
+                    "MyApp\\Components\\CreateInbox\\Tests\\": "./tests"
                 }
             },
             "authors": [
@@ -1169,12 +1114,12 @@
             ]
         },
         {
-            "name": "okashoi/myapp-task-component",
+            "name": "okashoi/myapp-task",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "./packages/components/Tasks",
-                "reference": "6826323b872209daaa8c7b1303fe2980b9952e5f"
+                "url": "./packages/Entities/Task",
+                "reference": "da43dba8b4bba23d7f253887987a3ea9db247cde"
             },
             "require": {
                 "mockery/mockery": "^1.2",
@@ -1186,12 +1131,12 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "MyApp\\Components\\Tasks\\": "./src"
+                    "MyApp\\Entities\\Task\\": "./src"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Tests\\Components\\Tasks\\": "./tests"
+                    "MyApp\\Entities\\Task\\Tests\\": "./tests"
                 }
             },
             "authors": [
@@ -1202,12 +1147,12 @@
             ]
         },
         {
-            "name": "okashoi/myapp-waiting-component",
+            "name": "okashoi/myapp-waiting",
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "./packages/components/Waitings",
-                "reference": "b6fcca5d22046ec7a8b0e814d15d142688cb04b5"
+                "url": "./packages/Entities/Waiting",
+                "reference": "49bd89ff926dfb597cc3aa631540bd7f615486e5"
             },
             "require": {
                 "php": "^7.3"
@@ -1218,55 +1163,12 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "MyApp\\Components\\Waitings\\": "./src"
+                    "MyApp\\Entities\\Waiting\\": "./src"
                 }
             },
             "autoload-dev": {
                 "psr-4": {
-                    "Tests\\Components\\Waitings\\": "./tests"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Okada Shohei",
-                    "email": "okashoicircus0@gmail.com"
-                }
-            ]
-        },
-        {
-            "name": "okashoi/myapp-web",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./packages/web",
-                "reference": "f877e11aa1eaa8e865d147cb0a42973b280d96ad"
-            },
-            "require": {
-                "illuminate/support": "^6.0",
-                "laravel/framework": "^6.0",
-                "okashoi/myapp-database": "*@dev",
-                "okashoi/myapp-task-component": "*@dev",
-                "php": "^7.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.4"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "MyApp\\Web\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MyApp\\Web\\": "./src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\Web\\": "./tests"
+                    "MyApp\\Entities\\Waiting\\Tests\\": "./tests"
                 }
             },
             "authors": [
@@ -4861,12 +4763,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "okashoi/myapp-api": 20,
-        "okashoi/myapp-console": 20,
-        "okashoi/myapp-database": 20,
-        "okashoi/myapp-task-component": 20,
-        "okashoi/myapp-waiting-component": 20,
-        "okashoi/myapp-web": 20
+        "okashoi/myapp-create-inbox": 20,
+        "okashoi/myapp-task": 20,
+        "okashoi/myapp-waiting": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -1,0 +1,40 @@
+{
+  "name": "okashoi/myapp-create-inbox",
+  "authors": [
+    {
+      "name": "Okada Shohei",
+      "email": "okashoicircus0@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.3",
+    "laravel/framework": "^6.0",
+    "okashoi/myapp-task": "*@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyApp\\Components\\CreateInbox\\": "./src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MyApp\\Components\\CreateInbox\\Tests\\": "./tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MyApp\\Components\\CreateInbox\\ServiceProvider"
+      ]
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../Entities/Task"
+    }
+  ]
+}
