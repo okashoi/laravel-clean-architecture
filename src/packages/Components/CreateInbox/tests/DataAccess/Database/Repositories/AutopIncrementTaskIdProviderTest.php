@@ -1,13 +1,13 @@
 <?php
 
-namespace MyApp\Components\CreateInbox\DataAccess\Database\Repositories;
+namespace MyApp\Components\CreateInbox\Tests\DataAccess\Database\Repositories;
 
 use PHPUnit\Framework\TestCase;
 use MyApp\Components\CreateInbox\DataAccess\Database\Repositories\AutoIncrementTaskIdProvider;
 
 /**
  * Class AutoIncrementTaskIdProviderTest
- * @package MyApp\Components\CreateInbox\DataAccess\Database\Repositories
+ * @package MyApp\Components\CreateInbox\Tests\DataAccess\Database\Repositories
  */
 class AutoIncrementTaskIdProviderTest extends TestCase
 {

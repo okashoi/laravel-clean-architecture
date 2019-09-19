@@ -8,7 +8,7 @@ use MyApp\Components\CreateInbox\UseCase\{Interactor, InputData, NormalOutputBou
 
 /**
  * Class InteractorTest
- * @package Tests\Components\Tasks\UseCases\CrateInbox
+ * @package MyApp\Components\CreateInbox\Tests\UseCase
  */
 class InteractorTest extends TestCase
 {

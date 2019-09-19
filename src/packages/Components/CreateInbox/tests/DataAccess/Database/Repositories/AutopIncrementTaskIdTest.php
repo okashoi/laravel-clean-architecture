@@ -1,13 +1,15 @@
 <?php
 
-namespace MyApp\Components\CreateInbox\DataAccess\Database\Repositories;
+namespace MyApp\Components\CreateInbox\Tests\DataAccess\Database\Repositories;
 
 use PHPUnit\Framework\TestCase;
+use MyApp\Components\CreateInbox\DataAccess\Database\InvalidArgumentException;
+use MyApp\Components\CreateInbox\DataAccess\Database\EntityUnidentifiedException;
 use MyApp\Components\CreateInbox\DataAccess\Database\Repositories\AutoIncrementTaskId;
 
 /**
  * Class AutoIncrementTaskIdTest
- * @package MyApp\Components\CreateInbox\DataAccess\Database\Repositories
+ * @package MyApp\Components\CreateInbox\Tests\DataAccess\Database\Repositories
  */
 class AutoIncrementTaskIdTest extends TestCase
 {
@@ -23,19 +25,21 @@ class AutoIncrementTaskIdTest extends TestCase
 
     /**
      * @test
-     * @expectedException \MyApp\Database\InvalidArgumentException
      */
     public function コンスタラクタ引数に0を渡すとInvalidArgumentExceptionを送出すること()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         new AutoIncrementTaskId(0);
     }
 
     /**
      * @test
-     * @expectedException \MyApp\Database\InvalidArgumentException
      */
     public function コンスタラクタ引数に負の整数を渡すとInvalidArgumentExceptionを送出すること()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         new AutoIncrementTaskId(-1);
     }
 
@@ -55,22 +59,21 @@ class AutoIncrementTaskIdTest extends TestCase
         $this->assertFalse($one->equals($another));
     }
 
-    /**
-     * @test
-     * @expectedException \MyApp\Database\EntityUnidentifiedException
-     */
     public function ID未設定の状態で値にアクセスしようとするとEntityUnidentifiedExceptionを送出すること()
     {
+        $this->expectException(EntityUnidentifiedException::class);
+
         $id = new AutoIncrementTaskId(null);
         $id->value();
     }
 
     /**
      * @test
-     * @expectedException \MyApp\Database\EntityUnidentifiedException
      */
     public function ID未設定の状態で比較しようとするとEntityUnidentifiedExceptionを送出すること()
     {
+        $this->expectException(EntityUnidentifiedException::class);
+
         $one = new AutoIncrementTaskId(null);
         $another = new AutoIncrementTaskId(1);
 
